@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+# Instances
+{% if vagrant_name is defined and vagrant_ip is defined %}
+{{ vagrant_ip }}  {{ vagrant_name }}
+{% endif %}

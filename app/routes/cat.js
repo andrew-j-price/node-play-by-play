@@ -30,10 +30,12 @@ module.exports = function(app) {
                 res.json({info: 'error during find cat', error: err});
             };
             if (cat) {
-                // res.json({info: 'cat found successfully', data: cat});
+                res.json({info: 'cat found successfully', data: cat});
+                /*
                 setTimeout(function(){
                     res.json({info: 'cat found successfully', data: cat});
                 }, 10000);
+                */
             } else {
                 res.json({info: 'cat not found'});
             }

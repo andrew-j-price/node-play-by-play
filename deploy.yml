@@ -1,0 +1,12 @@
+---
+
+- name: Deploy and configure
+  hosts: all
+  become: true
+  become_user: root
+  gather_facts: true
+  vars_files:
+    - "group_vars/{{ group_name }}.yml"
+  roles:
+    - { role: base, tags: ['base'] }
+    - { role: packages, tags: ['packages'] }

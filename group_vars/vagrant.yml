@@ -1,0 +1,6 @@
+---
+
+app_folder: '/home/ubuntu/app/'
+
+vagrant_name: '{{ ansible_hostname }}'
+vagrant_ip: '{{ ansible_enp0s8.ipv4.address }}'

@@ -23,7 +23,7 @@ module.exports = function(app) {
             // res.json({info: 'dogs found successfully', data: dogs});
             setTimeout(function(){
                 res.json({info: 'dogs found successfully', data: dogs});
-            }, 10000);
+            }, 5000);
         });
     });
 

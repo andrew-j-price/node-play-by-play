@@ -1,0 +1,81 @@
+---
+
+- name: Add node.js apt key
+  apt_key:
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
+    id: "68576280"
+    state: present
+
+- name: Add node.js repo
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb https://deb.nodesource.com/node_6.x xenial main"
+    - "deb-src https://deb.nodesource.com/node_6.x xenial main"
+
+- name: Update cache if greater than 3600 seconds (1 hour)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install packages via aptitude
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mongodb
+    - mongodb-clients
+    - mongodb-server
+    - nodejs
+    - redis-sentinel
+    - redis-server
+    - redis-tools
+
+- name: Install global specific packages via npm
+  npm:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    global: yes
+    state: present
+  with_items:
+    - info:
+      name: 'express'
+      version: '4.13.3'
+    - info:
+      name: 'forever'
+      version: '0.15.3'
+    - info:
+      name: 'nodemon'
+      version: '1.11.0'
+
+- name: Install path specific packages via npm
+  npm:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    path: "{{ app_folder }}"
+    state: present
+  with_items:
+    - info:
+      name: 'async'
+      version: '1.5.0'
+    - info:
+      name: 'lodash'
+      version: '3.10.1'
+    - info:
+      name: 'mongoose'
+      version: '4.2.7'
+    - info:
+      name: 'redis'
+      version: '2.3.1'
+    - info:
+      name: 'request'
+      version: '2.67.0'
+
+- name: Install to path any package version via npm
+  npm:
+    name: "{{ item }}"
+    path: "{{ app_folder }}"
+    state: present
+  with_items:
+    - body-parser
