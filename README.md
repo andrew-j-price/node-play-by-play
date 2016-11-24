@@ -1,9 +1,9 @@
 # node-redis-mongo
 
 Code included is based upon:
-https://www.pluralsight.com/courses/play-by-play-node-web-api-john-papa-sam-artioli
-https://github.com/samartioli/node-play-by-play
-https://github.com/samartioli/node-web-api
+  - https://www.pluralsight.com/courses/play-by-play-node-web-api-john-papa-sam-artioli
+  - https://github.com/samartioli/node-play-by-play
+  - https://github.com/samartioli/node-web-api
 
 To learn more about this setup, I configured the wrappers for Vagrant and Ansible.
 
